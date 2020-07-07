@@ -3,13 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Highlighter))]
 public class RubicController : MonoBehaviour
 {
     private List<MeshRenderer> selection = new List<MeshRenderer>();
     private float delta = 0.1f;
-
-    [SerializeField]
-    Color selectionColor;
 
     // Start is called before the first frame update
     void Start()
@@ -23,25 +21,34 @@ public class RubicController : MonoBehaviour
         if(Input.anyKeyDown)
             DeselectAll();
 
+        Func<Vector3, bool> selector = null;
+        bool selectionChanged = false;
+
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            Func<Vector3, bool> selector = position => position.y > transform.position.y + delta;
-            IterateChilds(transform, selector);
+            selector = position => position.y > transform.position.y + delta;
+            selectionChanged = true;
         }
         else if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            Func<Vector3, bool> selector = position => position.y < transform.position.y - delta;
-            IterateChilds(transform, selector);
+            selector = position => position.y < transform.position.y - delta;
+            selectionChanged = true;
         }
         else if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            Func<Vector3, bool> selector = position => position.x < transform.position.x - delta;
-            IterateChilds(transform, selector);
+            selector = position => position.x < transform.position.x - delta;
+            selectionChanged = true;
         }
         else if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            Func<Vector3, bool> selector = position => position.x > transform.position.x + delta;
+            selector = position => position.x > transform.position.x + delta;
+            selectionChanged = true;
+        }
+
+        if (selectionChanged)
+        {
             IterateChilds(transform, selector);
+            GetComponent<Highlighter>().EnableHighlight(selection);
         }
     }
 
@@ -50,29 +57,20 @@ public class RubicController : MonoBehaviour
         foreach (Transform child in goTransform)
         {
             if (selector(child.position))
-                Select(child);
+            {
+                var mesh_renderer = child.GetComponent<MeshRenderer>();
+                if (mesh_renderer != null)
+                {
+                    selection.Add(mesh_renderer);
+                }
+            }
             IterateChilds(child, selector);
-        }
-    }
-
-    void Select(Transform t)
-    {
-        var mesh_renderer = t.GetComponent<MeshRenderer>();
-        if (mesh_renderer != null)
-        {
-            var material = mesh_renderer.materials[1];
-            material.color = selectionColor;
-            selection.Add(mesh_renderer);
         }
     }
 
     void DeselectAll()
     {
-        foreach (var item in selection)
-        {
-            var material = item.materials[1];
-            material.color = new Color(0.56f, 0.56f, 0.56f);
-        }
+        GetComponent<Highlighter>().DisableHighlight(selection);
         selection.Clear();
     }
 }

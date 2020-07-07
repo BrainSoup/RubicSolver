@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\CameraController.cs" />
+    <Compile Include="Assets\Scripts\Highlighter.cs" />
     <Compile Include="Assets\Scripts\RubicBuilder.cs" />
     <Compile Include="Assets\Scripts\RubicController.cs" />
     <None Include="Assets\Materials\OutlineShader.shader" />
