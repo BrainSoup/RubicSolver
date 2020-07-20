@@ -63,10 +63,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\CameraController.cs" />
+    <Compile Include="Assets\Scripts\Deprecated\CameraController.cs" />
     <Compile Include="Assets\Scripts\Highlighter.cs" />
     <Compile Include="Assets\Scripts\RubicBuilder.cs" />
     <Compile Include="Assets\Scripts\RubicController.cs" />
+    <Compile Include="Assets\Scripts\RubicRotation.cs" />
     <None Include="Assets\Materials\OutlineShader.shader" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity_2019/2019.4.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

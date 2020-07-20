@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 126439183}
   - component: {fileID: 126439186}
   - component: {fileID: 126439185}
+  - component: {fileID: 126439187}
   m_Layer: 0
   m_Name: RubicCube
   m_TagString: Untagged
@@ -193,8 +194,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 337fc87c97b5533498e34398db368b08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SelectedColor: {r: 0.75, g: 0.75, b: 0.75, a: 1}
+  DeselectedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   SelectedMaterial: {fileID: 2100000, guid: 9e34361322e56734c92d236acdef78de, type: 2}
   DeselectedMaterial: {fileID: 2100000, guid: 2a221c6da85a480419684a08b0f57f6c, type: 2}
+--- !u!114 &126439187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 126439182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6788180249fed9548940e4eb86f0191c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CameraSpeedH: 1
+  CameraSpeedV: 1
 --- !u!1 &377931999
 GameObject:
   m_ObjectHideFlags: 0
@@ -390,7 +407,6 @@ GameObject:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
-  - component: {fileID: 963194229}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -463,18 +479,3 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!114 &963194229
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 963194225}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f2e0fc7d8af83c45b8202cd758f4dc6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CameraDistance: 10
-  CameraSpeedH: 1
-  CameraSpeedV: 1
